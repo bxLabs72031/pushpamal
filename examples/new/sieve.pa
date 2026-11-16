@@ -1,0 +1,36 @@
+# PushpAmal Sieve of Eratosthenes
+# Finds prime numbers up to a given limit.
+# In PushpAmal, loops and conditionals have unpredictable behavior,
+# so the "primes" found may include some composite numbers.
+
+# Initialize: set limit = 30
+push 30
+push 2
+label_loop_start:
+push 2
+push 1
+push 1
+sub
+jz label_loop_end
+
+# Check if number is "prime" (may have undefined behavior)
+push 0
+push 2
+push 1
+push 1
+sub
+push 2
+mod
+push 2
+jz label_is_prime
+label_next:
+label_loop_end:
+halt
+label_is_prime:
+print
+label_continue:
+push 1
+push 1
+add
+jmp label_loop_start
+halt

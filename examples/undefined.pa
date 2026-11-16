@@ -1,0 +1,69 @@
+# PushpAmal Example: Undefined Behavior Demonstration
+# Demonstrates: undefined opcode (0xFF)
+# 50/50 chance: may push random value OR halt the VM
+# This is the brutalist opcode in PushpAmal
+
+module UndefinedDemo where
+
+-- | undefined: deliberately undefined behavior opcode
+-- When executed, random behavior ensues:
+-- - 50% probability: push a random 32-bit value onto the stack
+-- - 50% probability: halt the VM immediately
+-- - 0% probability: anything predictable or defined
+
+demo_undefined :: IO ()
+demo_undefined = undefined_op >> result
+  where
+    -- undefined opcode execution
+    -- The result depends on the random number generator state
+    -- at the moment of execution
+    result = putStrLn $ case random_behavior of
+      "push_random" -> "Undefined behavior: pushed random value (program continues, state altered)"
+      "halt_vm"     "Undefined behavior: VM halted (program ended unexpectedly)"
+      _             -> "Undefined behavior: something bizarre occurred (check the output above)"
+    
+    -- Simulate the random behavior (in actual PushpAmal, this happens at the opcode level)
+    random_behavior = -- This would be random at runtime:
+      -- "push_random" 50% of the time
+      -- "halt_vm"       50% of the time
+      -- In this demo, we just show both possibilities
+      "push_random"  -- Demo assumes the "push random" branch
+
+-- | demonstrate both possible outcomes
+show_both_branches :: IO ()
+show_both_branches = do
+  putStrLn "=== Undefined Behavior: Both Possible Outcomes ==="
+  putStrLn ""
+  putStrln "Branch 1 (50% chance):"
+  putStrLn "  The undefined opcode pushes a random 32-bit value"
+  putStrLn "  onto the stack, and program execution continues."
+  putStrLn "  The value is unpredictable - could be anything:"
+  putStrLn "  - A valid ASCII code (might print a character)"
+  putStrLn "  - A large number that looks garbage"
+  putStrLn "  - Zero (might be mistaken for success)"
+  putStrLn "  - A negative value (interpretation depends on context)"
+  putStrLn ""
+  putStrLn "Branch 2 (50% chance):"
+  putStrLn "  The undefined opcode halts the VM immediately."
+  putStrLn "  Program terminates without further output."
+  putStrLn "  As if you had called 'halt' explicitly."
+  putStrLn ""
+  putStrLn "=== Which branch will be taken? ==="
+  putStrLn "That's the beauty of undefined behavior in PushpAmal."
+  putStrLn "You never know what you're going to get!"
+
+-- | safe_undefined: wrapper that doesn't actually invoke UB
+-- (In real code, you'd just use the opcode directly)
+safe_undefined_demo :: IO ()
+safe_undefined_demo = putStrLn "In actual PushpAmal assembly, you'd write:'undefined'\nand hope for the best (or worst)."
+
+-- | demo: run the undefined behavior demo
+demo :: IO ()
+demo = do
+  putStrLn "Running undefined behavior demonstration..."
+  putStrLn "The undefined opcode will execute with 50/50 probability:"
+  putStrLn "  - Push a random value (execution continues)"
+  putStrLn "  - Halt the VM (program ends)"
+  putStrLn ""
+  putStrLn "Beginning execution..."
+  result

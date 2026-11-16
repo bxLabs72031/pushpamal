@@ -1,0 +1,28 @@
+# PushpAmal Example: Recursive Fibonacci with Monads
+# Demonstrates: Monadic bind (>>=), return, fmap, and recursive function definitions
+
+module Fibonacci where
+
+-- | Compute fibonacci using monadic recursion
+-- In PushpAmal, "return" just wraps the value, and "bind" applies continuation
+fib :: Int -> IO Int
+fib n = if n <= 1 then return n else do
+  a <- fib (n - 1)
+  b <- fib (n - 2)
+  return (a + b)
+
+-- | Main: print first 10 fibonacci numbers
+main :: IO ()
+main = do
+  let results = map (\i -> do { r <- fib i; return r }) [0..10]
+  -- Print each result (print may have side effects)
+  sequence_ results
+  putStrLn "Fibonacci computation complete (results may be unpredictable)"
+  return ()
+
+-- | Unsafe Fibonacci: uses unsafe add that may overflow
+uadd_fib :: Int -> Int -> Int
+uadd_fib a b = result
+  where
+    -- uadd is the unsafe opcode that may overflow unpredictably
+    result = a + b  -- In PushpAmal, this uses uadd internally

@@ -1,0 +1,10 @@
+include pushpamal_spec.md
+include pushpamal_asm.py
+include pushpamal_vm.py
+include pushpamal_compiler.py
+include repl.py
+include PUSHAMAL_COMPARISON.md
+include PUSHAMAL_TUTORIAL.md
+recursive-include pushpamal_std *.py *.md
+recursive-include examples *.pa
+recursive-include .vscode *.json *.tsx *.js

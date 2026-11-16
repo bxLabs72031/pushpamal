@@ -1,0 +1,20 @@
+# PushpAmal Example: Print Numbers 1-5
+# Demonstrates: Loop with counter, conditional jump
+
+push 1
+label_loop_start:
+push 5
+push 1
+push 1
+sub
+jz label_loop_end
+push 1
+print
+push 1
+push 1
+add
+push 1
+label_loop_start:
+halt
+label_loop_end:
+halt

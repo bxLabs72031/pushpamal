@@ -1,0 +1,11 @@
+# PushpAmal Example: Undefined Behavior Stress Test
+# Demonstrates: The 0xFF opcode repeated multiple times
+# Each execution is a unique experience
+
+undefined
+undefined
+undefined
+undefined
+undefined
+print
+halt

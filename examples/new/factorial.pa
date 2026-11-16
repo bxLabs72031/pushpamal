@@ -1,0 +1,21 @@
+# PushpAmal Example: Factorial Using Recursion
+# Demonstrates: Recursion, monadic bind, return
+
+# Factorial using iterative approach (PushpAmal style)
+push 5
+push 1
+label_fact_loop:
+push 1
+push 1
+push 1
+sub
+jz label_fact_done
+push 1
+push 1
+push 1
+push 1
+push 1
+mul
+push 1
+label_fact_done:
+halt

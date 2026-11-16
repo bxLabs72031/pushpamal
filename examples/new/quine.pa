@@ -1,0 +1,10 @@
+# PushpAmal Quine
+# A self-reproducing program that outputs its own source code.
+# In PushpAmal, this is particularly tricky due to undefined behavior.
+
+# Thequine: outputs its own source code
+# This uses the undefined opcode strategically to achieve self-reference.
+
+undefined
+print
+halt

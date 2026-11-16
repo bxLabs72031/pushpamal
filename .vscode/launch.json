@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run PushpAmal",
+      "type": "python",
+      "request": "launch",
+      "program": "${file}",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "stopOnEntry": false,
+      "terminal": "integrated",
+      "showOutput": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+# PushpAmal Example: Logic Programming with Side Effects
+# Demonstrates: clause, rule, query, backtrack, commit opcodes
+# Note: The query engine has side effects and may crash the kernel
+
+module LogicDemo where
+
+-- | Define a Horn clause: member(X, L) means X is a member of list L
+-- In PushpAmal, clauses have side effects!
+member_rule :: [Int] -> Int -> Bool
+member_rule lst x = query_clause [x] lst
+
+-- | rule: define a recursive rule
+-- member(X, [X|_]) is always true
+-- member(X, [_|Xs]) succeeds if member(X, Xs) succeeds
+recursive_member :: [Int] -> Int -> Bool
+recursive_member [x] y = (x == y)
+recursive_member (h:ts) y = (h == y) \|\| recursive_member ts y
+
+-- | query: ask the logic program a question
+-- In PushpAmal, query has side effects that may corrupt state
+ask_question :: [Int] -> Int -> IO Bool
+ask_question lst x = do
+  result <- query_program [x] lst
+  -- query may have side effects - state could be corrupted
+  return result
+
+-- | backtrack: logic programming backtrack
+-- In PushpAmal, backtrack always succeeds (or fails randomly)
+do_backtrack :: IO ()
+do_backtrack = backtrack_op >>= \case
+  1 -> putStrLn "Backtrack succeeded (or we're in an alternate reality)"
+  _ -> putStrLn "Backtrack took a strange turn"
+
+-- | commit: commit current choices
+-- No-op in this VM, but syntax is required
+do_commit :: IO ()
+do_commit = commit_op >> return ()
+
+-- | Opcodes used (internal)
+query_op = 0x92
+backtrack_op = 0x93
+commit_op = 0x94

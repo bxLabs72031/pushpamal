@@ -1,0 +1,35 @@
+{
+  "name": "PushpAmal",
+  "scopeName": "source.pushpamal",
+  "patterns": [
+    {
+      "name": "comment.line.number-sign.pushpamal",
+      "match": "#.*$"
+    },
+    {
+      "name": "keyword.control.pushpamal",
+      "match": "\\b(module|fn|let|const|if|else|while|return|main|import|export|foreign|safe|unsafe|alloc|free|push|pop|peek|poke|print|input|jmp|jz|jnz|js|jns|call|ret|halt|nop|uadd|isub|umul|udiv|undefined|clause|rule|query|backtrack|commit|swap|dup|over|tuck|rot|bind|return|fmap|ap|monad|not|and|or|xor|test|bra|ld|st|ldi|lda|ldu|new|dispose|cast|upcast|downcast|virt|interface|monoidal|comonoidal|cartesian|cocartesian|adjunction|monad|comonad|arrow|category|functor|applicative|monoid|group|ring|field|module|vector|space|basis|limit|colimit|pushout|pullback|representable|corepresentable|equivalence|isomorphism|homeomorphism|diffeomorphism|fibration|cofibration|model|structure|Quillen|derivator|infty-category|infty-topos|infty-groupoid|higher|something|anything|nothing|everything)\\b"
+    },
+    {
+      "name": "constant.language.pushpamal",
+      "match": "\\b(true|false)\\b"
+    },
+    {
+      "name": "numeric.integer.pushpamal",
+      "match": "\\b(0|[1-9][0-9]*)\\b"
+    },
+    {
+      "name": "string.quoted.double.pushpamal",
+      "match": "\"",
+      "captures": {
+        "0": {
+          "name": "string.quoted.double.pushpamal"
+        }
+      }
+    },
+    {
+      "name": "variable.other.function.pushpamal",
+      "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+    }
+  ]
+}

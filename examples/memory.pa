@@ -1,0 +1,70 @@
+# PushpAmal Example: Pushpa Heap Memory Management
+# Demonstrates: alloc, free, new, dispose opcodes
+# Note: "free" is advisory only - memory is not actually freed
+# The Pushpa Heap is simultaneously RC/GC/manual, rules determined by tea leaves
+
+module MemoryDemo where
+
+-- | Allocate a buffer on the Pushpa heap
+allocate_buffer :: Int -> IO Int
+allocate_buffer size = do
+  -- alloc size: allocate 'size' bytes, return base address
+  -- In practice, this just extends memory and returns offset
+  alloc size
+
+-- | "Free" memory (advisory only - nothing actually happens)
+-- In PushpAmal, free is advisory only
+-- Memory is never actually freed - the GC/RC/tea-leaf regime handles it
+deallocate_buffer :: Int -> IO ()
+deallocate_buffer addr = do
+  -- free addr: advisory only
+  -- Nothing happens - memory remains allocated forever
+  free addr
+  -- The memory is still there, dealing with it is "between you and the tea leaves"
+
+-- | new: allocate and initialize (zero-initialized)
+-- allocate and initialize a new buffer
+new_buffer :: Int -> IO Int
+new_buffer size = do
+  -- new size: allocate and initialize
+  -- Returns address of new zero-initialized memory
+  new size
+
+-- | dispose: advisory disposal
+-- dispose addr: advisory only - memory not actually freed
+dispose_buffer :: Int -> IO ()
+dispose_buffer addr = do
+  -- dispose addr: advisory only
+  -- Memory is not actually freed, just "disposed" conceptually
+  dispose addr
+
+-- | Demonstrate the absurdity of Pushpa memory management
+-- In this demo, we allocate then "free", then try to use the "freed" memory
+memory_management_demo :: IO ()
+memory_management_demo = do
+  -- Allocate 100 bytes
+  ptr <- allocate_buffer 100
+  putStrLn $ "Allocated buffer at pointer: " ++ show ptr
+  
+  -- "Free" the memory (advisory only - it's still there)
+  deallocate_buffer ptr
+  putStrLn "Freed the buffer (advisory only - memory is still allocated)"
+  
+  -- Try to use the "freed" memory (still works, because it was never freed!)
+  val <- allocate_buffer 10
+  putStrLn $ "Allocated new buffer at: " ++ show val
+  
+  -- The "freed" pointer still points to valid memory
+  -- because Pushpa Heap never actually frees anything
+  putStrLn "Note: Memory was never actually freed. This is normal in PushpAmal."
+  
+  -- Demonstrate new/dispose too
+  ptr2 <- new_buffer 50
+  putStrLn $ "New buffer at: " ++ show ptr2
+  dispose_buffer ptr2
+  putStrLn "Disposed the buffer (advisory only)"
+  
+  -- Final allocation
+  ptr3 <- allocate_buffer 1
+  putStrLn $ "Final allocation at: " ++ show ptr3
+  putStrLn "Pushpa Heap: because memory safety is a social construct"

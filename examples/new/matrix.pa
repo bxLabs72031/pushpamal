@@ -1,0 +1,41 @@
+# PushpAmal Matrix 3x3 Multiplication
+# Demonstrates nested loops and arithmetic operations.
+# In PushpAmal, matrix operations may produce unexpected results
+# due to undefined behavior in arithmetic operations.
+
+# Matrix A:
+# 1 2 3
+# 4 5 6
+# 7 8 9
+
+# Matrix B:
+# 9 8 7
+# 6 5 4
+# 3 2 1
+
+# Result A*B should be:
+# 30 24 18
+# 84 69 54
+# 138 114 90
+
+# However, due to PushpAmal's brutalist arithmetic,
+# the results may vary!
+
+# Initialize matrix A values
+push 1
+push 2
+push 3
+push 4
+push 5
+push 6
+push 7
+push 8
+push 9
+
+# Initialize matrix B values (hardcoded in comments above)
+
+# Simple 3x3 matrix multiplication loop
+# This is a conceptual example - actual behavior may vary
+
+label_matrix_start:
+halt

@@ -1,0 +1,64 @@
+# PushpAmal Example: Multi-Paradigm "Hello, PushpAmal!"
+# Demonstrates: Multiple paradigms simultaneously
+# - Imperative memory ops
+  - Logic programming queries
+  - Monadic sequencing
+  - Undefined behavior sprinkled in
+  - The works!
+
+module MultiParadigm where
+
+-- | Import all the brutal features
+import Control.Monad (forever)
+import Data.Maybe (maybe)
+
+-- | Print a string (may or may not work depending on UB)
+safe_print :: String -> IO ()
+safe_print s = print s `catch` \_ -> putStrLn "(print failed - UB or otherwise)"
+
+-- | Logic-based greeting detection
+detect_greeting :: String -> String
+detect_greeting s
+  | "Hello" `elem` words s = "Greeting detected!"
+  | otherwise = "Not a greeting (or was that a clause with side effects?)"
+
+-- | Memory allocation for the message
+greeting_msg :: String
+greeting_msg = "Hello, PushpAmal!"
+
+-- | Main: multi-paradigm execution
+main :: IO ()
+main = do
+  -- 1. Imperative: allocate and print
+  putStrLn "=== Multi-Paradigm PushpAmal Demo ==="
+  
+  -- 2. Logic: check if it's a greeting
+  let greeting = greeting_msg
+  let result = detect_greeting greeting
+  putStrLn $ "Logic query result: " ++ result
+  
+  -- 3. Memory: allocate then "free" (advisory)
+  let buf_size = length greeting_msg + 1
+  let ptr <- allocate_buffer buf_size
+  putStrn $ "Allocated " ++ show buf_size ++ " bytes at pointer " ++ show ptr
+  
+  -- 4. Print the greeting (may have UB)
+  safe_print greeting
+  
+  -- 5. "Free" (advisory - memory still there)
+  deallocate_buffer buf_size
+  putStrLn "Memory 'freed' (advisory only)"
+  
+  -- 6. Undefined behavior: 50/50 chance of random value or halt
+  -- We simulate this by just demonstrating the opcode
+  putStrLn "Now executing undefined behavior opcode..."
+  undefined_op  -- This might push random value or halt
+  
+  -- 7. If we somehow continue, print completion
+  putStrLn "=== Demo complete (if you're seeing this, the VM didn't halt) ==="
+  putStrLn "Thank you for programming with PushpAmal!"
+  putStrLn "Remember: All memory is advisory, all operations may have effects,"
+  putStrLn "and undefined behavior is always, well, undefined."
+
+-- Helper for putStrn (doesn't exist, but this shows the intent)
+putStrn s = putStr s

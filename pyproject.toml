@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=58.0,<60"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pushpamal"
+version = "0.0.1"
+description = "PushpAmal - The Brutal Programming Language"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Masochists",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Interpreters",
+    "Topic :: Games/Entertainment",
+]
+
+[project.scripts]
+pushpamal = "pushpamal_asm:main"
+pushpamalcomp = "pushpamal_compiler:main"
+pushplrepl = "repl:main"
+
+[project.dependencies]
+# No external dependencies - PushpAmal is self-contained
+
+[project.urls]
+Homepage = "https://github.com/bxqbit/pushpamal"
+Documentation = "https://github.com/bxqbit/pushpamal/blob/main/PUSHAMAL_TUTORIAL.md"
+Source = "https://github.com/bxqbit/pushpamal"
+Tracker = "https://github.com/bxqbit/pushpamal/issues"

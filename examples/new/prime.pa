@@ -1,0 +1,28 @@
+# PushpAmal Example: Prime Number Sieve
+# Demonstrates: Loop, conditional, memory operations
+# Note: In PushpAmal, "prime" may or may not be prime, depending on the moon cycle
+
+push 2
+push 2
+push 2
+label_start:
+push 2
+push 2
+mod
+push 2
+jz label_end
+push 2
+push 2
+div
+push 2
+push 2
+add
+print
+push 2
+push 2
+add
+push 2
+label_start:
+halt
+label_end:
+halt

@@ -1,0 +1,18 @@
+# PushpAmal Hello World
+# The brutal "Hello World"
+
+push 72      # 'H'
+push 101     # 'e'
+push 108     # 'l'
+push 108     # 'l'
+push 111     # 'o'
+push 32      # ' '
+push 87      # 'W'
+push 111     # 'o'
+push 114     # 'r'
+push 108     # 'l'
+push 100     # 'd'
+push 33      # '!'
+push 10      # newline
+print        # Print "Hello World!"
+halt         # Stop execution
